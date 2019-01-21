@@ -2,7 +2,7 @@ $(document).ready(function () {
     // console.log ("hello");
     //hide when the game starts
     $("#finalResult, #question, #donebtn").hide()
-    
+
     var questionsArray = [
 
         ["What color shoes does Mickey Mouse traditionally wear?", "Yellow", ["Red", "Blue", "Yellow", "Black"]],
@@ -25,17 +25,27 @@ $(document).ready(function () {
     });
     var correctAnswerCounter = 0;
     var incorrectAnswerCounter = 0;
+    var temp = [];
     $(".userSelection").on("click", function () {
         //console.log("hi");   
         var correctAnswer = $(this).attr('correctAnswer');
         var userSelection = $(this).val()
-        console.log(correctAnswer, userSelection);
+        //console.log(correctAnswer, userSelection);
         if (correctAnswer === userSelection) {
-            correctAnswerCounter++;
-            console.log("correctAnswerCounter", correctAnswerCounter);
+            if (temp.indexOf(correctAnswer) === -1) {
+                correctAnswerCounter++;
+                temp.push(correctAnswer)
+                console.log(temp)
+            }
+            //correctAnswerCounter++;
+            //console.log("correctAnswerCounter", correctAnswerCounter);
         } else {
-            incorrectAnswerCounter++;
-            console.log("incorrectAnswerCounter", incorrectAnswerCounter);
+            if (temp.indexOf(correctAnswer) === -1) {
+                incorrectAnswerCounter++;
+                temp.push(correctAnswer)
+            }
+            //incorrectAnswerCounter++;
+            //console.log("incorrectAnswerCounter", incorrectAnswerCounter);
         }
     });
     var timer;
@@ -45,37 +55,36 @@ $(document).ready(function () {
         $("#startbtn, #logo").hide();
         //show qtns
         $("#question, #donebtn").show();
-        
+
         timer = setInterval(() => {
             counter--;
-            if (counter >= 0) { 
+            if (counter >= 0) {
                 $("#countDown").text(counter);
-             }
-             else{
-                 $("#question, #donebtn").hide();
-                 $("#finalResult").show();
-                 $("#correctAnswer").text(correctAnswerCounter);
-                 $("#incorrectAnswer").text(incorrectAnswerCounter);
-                 
-             }
+            }
+            else {
+                $("#question, #donebtn").hide();
+                $("#finalResult").show();
+                $("#correctAnswer").text(correctAnswerCounter);
+                $("#incorrectAnswer").text(incorrectAnswerCounter);
+
+            }
 
         }, 1000);
     })
 
-$("#donebtn").on("click", function () {
-    clearInterval(timer);
-    counter = 20;
-    $("#question").hide();
-    $("#finalResult").show();
-    $("#correctAnswer").text(correctAnswerCounter);
-    $("#incorrectAnswer").text(incorrectAnswerCounter);
-})
-$("#restartbtn").on("click",function(){
-    
-    $("#correctAnswer, #incorrectAnswer").hide();
-        
-        $("#question, #donebtn").show();
-})
+    $("#donebtn").on("click", function () {
+        clearInterval(timer);
+        counter = 20;
+        $("#question, #donebtn").hide();
+        $("#finalResult").show();
+        $("#correctAnswer").text(correctAnswerCounter);
+        $("#incorrectAnswer").text(incorrectAnswerCounter);
+    })
+    $("#restartbtn").on("click", function () {
+        //refresh page
+        window.location.href = '/'
+
+    })
 
     //    for(var i =0; i<questionsArray.length; i++){
     //        var e = questionsArray[i];

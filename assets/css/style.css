@@ -1,1 +1,63 @@
-body{ background:blue;}
+body, html{ 
+    background:#FAFAFA;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#correctAnswer, #incorrectAnswer{
+    font-size: 3em;
+    /* font-weight: bold; */
+}
+#question{
+    margin-top: 10px;
+    border: 1px solid #aaa;
+    padding: 20px;
+}
+#startbtn{
+    background: #009688;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+#donebtn{
+    margin: 10px;
+    padding: 10px;
+    
+}
+#logo{
+    width: 450px;
+    height: 350px;
+    border: 1px solid;
+}
+#correctAnswer{
+    color: green;
+    font-size: bold;
+}
+#incorrectAnswer{
+    color: red;
+    font-size: bold;
+}
+
+#countDown{
+    color: red;
+}
+#finalResult{
+    border: 1px solid #aaa;
+    padding: 5px;
+    margin-top: 30px;
+    font-size: bold;
+}
+.question, .answerChoices{
+    font-size: 2em;
+    color: orange;
+    padding: 20px;
+    border: 1px solid #aaa;
+}
+p{
+    font-size: 16px;
+    font-weight: bold;
+}
