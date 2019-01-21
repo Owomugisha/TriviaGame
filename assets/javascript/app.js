@@ -31,7 +31,7 @@ $(document).ready(function () {
         var correctAnswer = $(this).attr('correctAnswer');
         var userSelection = $(this).val()
         //console.log(correctAnswer, userSelection);
-        if (correctAnswer === userSelection) {
+        if (correctAnswer === userSelection) { //stop it from adding up when selected
             if (temp.indexOf(correctAnswer) === -1) {
                 correctAnswerCounter++;
                 temp.push(correctAnswer)
